@@ -5,12 +5,16 @@ class MoodsController < ApplicationController
   end
 
   def create
-    mood = Mood.create(mood_params)
-    if mood.save()
+    mood = Mood.new(mood_params)
+
+    if Mood.exists?(latitude: mood.latitude) and Mood.exists?(longitude: mood.longitude)
+      render json: { message: "Record already exists" }
+    elsif mood.save()
       render json: mood
     else
       render json: { message: "Error! Could not save!" }
     end
+
   end
 
   private
