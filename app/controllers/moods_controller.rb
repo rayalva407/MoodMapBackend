@@ -16,6 +16,6 @@ class MoodsController < ApplicationController
   private
 
   def mood_params
-    params.require(:moods).permit(:latitude, :longitude, :mood_description)
+    params.require(:mood).permit(:latitude, :longitude, :mood_description)
   end
 end
