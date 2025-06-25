@@ -1,7 +1,7 @@
 class MoodsController < ApplicationController
   def index
     moods = Mood.all
-    render moods
+    render json: moods
   end
 
   def create
@@ -14,12 +14,11 @@ class MoodsController < ApplicationController
     else
       render json: { message: "Error! Could not save!" }
     end
-
   end
 
-  private
+    private
 
-  def mood_params
-    params.require(:mood).permit(:latitude, :longitude, :mood_description)
-  end
+      def mood_params
+        params.require(:mood).permit(:latitude, :longitude, :mood_description)
+      end
 end
